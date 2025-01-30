@@ -1,0 +1,154 @@
+.total_container{
+	margin-bottom: 100px;
+}
+
+.thumb_container{
+	display: inline-block;
+	width: 150px;
+	height: 150px;
+	position: relative;
+	/* background-color: white; */
+	margin: 20px;
+	/* border:4px solid white; */
+	/* box-shadow: 5px 5px 5px #666666; */
+	vertical-align: top;
+	}
+
+.thumb_text_container{
+	position: absolute;
+	left: 0px;
+	top: 160px;
+	width: 150px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #333333	;
+	
+}
+
+.thumb{
+	width: 150px ;
+	height: 150px ;
+	/* margin: 20px; */
+	/* display: inline-block; */
+	position: relative;
+	overflow: hidden;
+	box-shadow: 5px 5px 5px #666666;
+
+}
+
+.folder_container{
+	width: 150px ;
+	height: 150px ;
+	/* background-color: yellow; */
+	overflow: hidden;
+	margin: 20px;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+}
+
+.thumb_folder{
+	width: 95px ;
+	height: 95px ;
+	overflow: hidden;
+	/* margin: 20px; */
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top;
+	transform: rotate(-5deg); 
+	position: absolute;
+	top: 20px;
+	left: 25px;
+	border: 3px solid white;
+	z-index: 30;
+}
+
+.thumb_folder2{
+	transform: rotate(10deg); 
+	position: absolute;
+	top: 20px;
+	left: 30px;
+	z-index: 20;
+}
+
+.thumb_folder3{
+	transform: rotate(20deg); 
+	position: absolute;
+	top: 20px;
+	left: 35px;
+	z-index: 10;
+}
+
+.thumb_folder img{
+	
+}
+
+.folder_icon{
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	/* margin: 20px; */
+	display: inline-block;
+	overflow: hidden;
+	/* vertical-align: bottom; */
+	position: absolute;
+	/* left: -190px; */
+	/* bottom: 15px; */
+	/* z-index: 100; */
+	top: 15px;
+	left: 0px;
+	
+}
+
+.folder_icon_front{
+	z-index: 50;
+}
+
+	
+.folder_icon_back{
+	z-index: 5;
+}
+
+.folder_icon_text, .folder_icon_text a{
+	z-index: 70;
+	width: 125px;
+	position: absolute;
+	bottom: 0px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	text-decoration: none;
+	color: #222222;
+	font-weight: bold;
+}		
+
+.folder_icon img{
+	width: 150px ;
+	height: 150px;
+	/* margin: 20px; */
+	display: inline-block;
+	overflow: hidden;
+}
+
+.back_icon{
+	width: 150px ;
+	height: 150px ;
+	overflow: hidden;
+	margin: 18px;
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+}
+
+
+.vertical img {
+	width: 150px !important;
+	max-width: 250px !important;
+	margin-top: -50px;
+}
+
+.horizontal img {
+	height: 150px !important;
+	max-width: 250px !important;
+	margin-left: -50px;
+}
