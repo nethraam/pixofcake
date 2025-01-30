@@ -2,7 +2,7 @@
 /**
  *
  * @category        modules
- * @package         folder_album
+ * @package         pixofcake
  * @author          Maarten
  * @copyright       2023, Maarten
  * @copyright       2009-2010, Website Baker Org. e.V.
@@ -16,4 +16,4 @@
 // prevent this file from being accessed directly
 if(!defined('WB_PATH')) die(header('Location: index.php'));
 
-$database->query("DROP TABLE `".TABLE_PREFIX."mod_folder_album`");
+$database->query("DROP TABLE IF EXISTS `".TABLE_PREFIX."mod_pixofcake`");

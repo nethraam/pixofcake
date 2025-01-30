@@ -2,7 +2,7 @@
 /**
  *
  * @category        modules
- * @package         folder_album
+ * @package         pixofcake
  * @author          Maarten
  * @copyright       2023, Maarten
  * @copyright       2009-2010, Website Baker Org. e.V.
@@ -19,7 +19,7 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 /* -------------------------------------------------------- */
 
 // Get url
-    $sql = 'SELECT `url` FROM `'.TABLE_PREFIX.'mod_folder_album` WHERE `section_id`='.(int)$section_id;
+    $sql = 'SELECT `url` FROM `'.TABLE_PREFIX.'mod_pixofcake` WHERE `section_id`='.(int)$section_id;
     if (($url = $database->get_one($sql)) ) {
         $url = OutputFilterApi('ReplaceSysvar', $url);
         $url = \htmlspecialchars($url);
@@ -29,7 +29,7 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 
 ?>
 
-<form id="folder_album<?php echo $section_id; ?>" action="<?php echo WB_URL; ?>/modules/folder_album/save.php" method="post">
+<form id="pixofcake<?php echo $section_id; ?>" action="<?php echo WB_URL; ?>/modules/pixofcake/save.php" method="post">
 	<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
     <input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
     <?php echo $admin->getFTAN(); ?>

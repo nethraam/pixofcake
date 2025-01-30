@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `wb_mod_folder_album`
+-- Tabelstructuur voor tabel `wb_mod_pixofcake`
 --
 
-DROP TABLE IF EXISTS `wb_mod_folder_album`;
-CREATE TABLE IF NOT EXISTS `wb_mod_folder_album` (
+DROP TABLE IF EXISTS `{TABLE_PREFIX}mod_pixofcake`;
+CREATE TABLE IF NOT EXISTS `{TABLE_PREFIX}mod_pixofcake` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) DEFAULT NULL,
   `url` text,

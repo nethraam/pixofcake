@@ -2,7 +2,7 @@
 /**
  *
  * @category        modules
- * @package         folder_album
+ * @package         pixofcake
  * @author          Maarten
  * @copyright       2023, Maarten
  * @copyright       2009-2010, Website Baker Org. e.V.
@@ -27,15 +27,15 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 
 
 ?>
-<link rel="stylesheet" href="<?php echo WB_URL ?>/modules/folder_album/fancybox/jquery.fancybox.css" media="screen" />
-<script src="<?php echo WB_URL ?>/modules/folder_album/fancybox/jquery.fancybox.js"></script>
+<link rel="stylesheet" href="<?php echo WB_URL ?>/modules/pixofcake/fancybox/jquery.fancybox.css" media="screen" />
+<script src="<?php echo WB_URL ?>/modules/pixofcake/fancybox/jquery.fancybox.js"></script>
 <?php
 
 // $folder = "/media/robot";
 
 $page_id = $_SESSION['PAGE_ID'];
 
-$query = "SELECT `url` FROM `".TABLE_PREFIX."mod_folder_album` WHERE `page_id` = '$page_id'";
+$query = "SELECT `url` FROM `".TABLE_PREFIX."mod_pixofcake` WHERE `page_id` = '$page_id'";
 $get_content = $database->query($query);
 $content = $get_content->fetchAssoc();
 $folder = ($content['url'] ?? '');  // \htmlspecialchars
@@ -54,7 +54,7 @@ if(array_key_exists(1,$current_url)){
 echo "<div class='total_container'>";
 	if(isset($_GET['subfolder'])){
 		$folder = "$folder/".$_GET['subfolder'];
-				echo "<div class='back_icon'> <a href='$previous_url'> <img src='".WB_URL."/modules/folder_album/img/back.png' alt='' /> </a> </div>\n";
+				echo "<div class='back_icon'> <a href='$previous_url'> <img src='".WB_URL."/modules/pixofcake/img/back.png' alt='' /> </a> </div>\n";
 		}
 
 	find_subfolders($folder);
@@ -83,8 +83,12 @@ function find_photos($folder){
 			
 				if ($width >= $height)
 					$orientation = 'horizontal';
-				else
+				if ($width <= $height)
 					$orientation = 'vertical';
+				if ($width <= $height)
+					$orientation = 'square';
+				
+				
 				
 				echo "<div class='thumb_container'>";
 					if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
@@ -153,8 +157,8 @@ function find_subfolders($folder){
 								echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$firstFile' alt='' /> </a> </div>\n";
 								echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$secondfile' alt='' /> </a> </div>\n";
 								echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$thirdfile' alt='' /> </a> </div>\n";
-								echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/folder_album/img/folder_front.png' alt='' /> </a> </div>\n";
-								echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/folder_album/img/folder_back.png' alt='' /> </a> </div>\n";
+								echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_front.png' alt='' /> </a> </div>\n";
+								echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_back.png' alt='' /> </a> </div>\n";
 								echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
 							}
 					echo "</div>\n";

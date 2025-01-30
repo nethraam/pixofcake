@@ -152,3 +152,7 @@
 	max-width: 250px !important;
 	margin-left: -50px;
 }
+
+.square img {
+	width: 150px !important;
+}

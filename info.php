@@ -2,7 +2,7 @@
 /**
  *
  * @category        modules
- * @package         folder_album
+ * @package         pixofcake
  * @author          Maarten
  * @copyright       2025, Maarten
  * @copyright       2009-2010, Website Baker Org. e.V.

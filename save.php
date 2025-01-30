@@ -2,7 +2,7 @@
 /**
  *
  * @category        modules
- * @package         folder_album
+ * @package         pixofcake
  * @author          Maarten
  * @copyright       2023, Maarten
  * @copyright       2009-2010, Website Baker Org. e.V.
@@ -37,12 +37,12 @@ $admin->print_header();
 if (isset($_POST['url'])) {
 //    $content = (\str_replace($notAllowedTags, '', $_POST['content']));
     $url = $oRequest->getParam('url');
-    $sqlSet = '`'.TABLE_PREFIX.'mod_folder_album` SET '
+    $sqlSet = '`'.TABLE_PREFIX.'mod_pixofcake` SET '
             . '`section_id`='.$section_id.', '
             . '`page_id`='.$page_id.', '
             . '`url` = \''.$database->escapeString($url).'\' ';
     // search for instance of this module in section
-    $sql = 'SELECT COUNT(*) FROM `'.TABLE_PREFIX.'mod_folder_album` '
+    $sql = 'SELECT COUNT(*) FROM `'.TABLE_PREFIX.'mod_pixofcake` '
          . 'WHERE `section_id`='.$section_id;
     if ($database->get_one($sql)) {
     // if matching record already exists run UPDATE
