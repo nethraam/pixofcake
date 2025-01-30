@@ -29,15 +29,19 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 
 ?>
 
-<form id="pixofcake<?php echo $section_id; ?>" action="<?php echo WB_URL; ?>/modules/pixofcake/save.php" method="post">
+<form class="pixofcake-backend-form" id="pixofcake<?php echo $section_id; ?>" action="<?php echo WB_URL; ?>/modules/pixofcake/save.php" method="post">
 	<input type="hidden" name="page_id" value="<?php echo $page_id; ?>" />
     <input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
     <?php echo $admin->getFTAN(); ?>
-	<br>
-	link to the folder where the photo's are located;<br>
+	<p>
+	link to the folder where the photo's are located:<br>
     <input class="w3-border w3-padding w3-padding w3-mobile " type="text" name="url" id="url" value="<?php echo $url; ?>" style="width:60%;" />
-	<br>
-	<br>
+	</p>
+	<p>
+	Crop the thumbnail images so they all have the same format of 150px x 150px:<br>
+	<input type="checkbox" id="pixofcake_crop_images" name="scales" checked />
+    <label for="pixofcake_crop_images">crop_image</label>
+	</p>
 	<table style="padding-bottom: 10px; width: 100%;">
         <tr>
             <td style="margin-left: 1em;">
