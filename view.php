@@ -40,6 +40,21 @@ $get_content = $database->query($query);
 $content = $get_content->fetchAssoc();
 $folder = ($content['url'] ?? '');  // \htmlspecialchars
 
+// Get url
+    // $sql = 'SELECT `url` FROM `'.TABLE_PREFIX.'mod_pixofcake` WHERE `section_id`='.(int)$section_id;
+    // if (($url = $database->get_one($sql)) ) {
+        // $url = OutputFilterApi('ReplaceSysvar', $url);
+        // $url = \htmlspecialchars($url);
+    // } else {
+        // $url = '';
+    // }
+
+	$query = "SELECT * FROM `".TABLE_PREFIX."mod_pixofcake` WHERE `page_id` = '$page_id'";
+	$get_settings = $database->query($query);
+	$settings = $get_settings->fetchAssoc();
+	$crop_images = ($settings['crop_images'] ?? ''); 
+	$show_filenames = ($settings['show_filenames'] ?? ''); 	
+
 
 $current_url = explode("?", $_SERVER['REQUEST_URI']);
 
@@ -58,12 +73,12 @@ echo "<div class='total_container'>";
 		}
 
 	find_subfolders($folder);
-	find_photos($folder);
+	find_photos($folder, $show_filenames, $crop_images);
 
 echo "</div>";
 
 
-function find_photos($folder){
+function find_photos($folder, $show_filenames, $crop_images){
 	
 	$files = scandir(WB_PATH.$folder);
 
@@ -90,19 +105,32 @@ function find_photos($folder){
 				
 				
 				
-				echo "<div class='thumb_container'>";
-					if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
-						echo "<div class='thumb $orientation'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'> <img src='".WB_URL."$folder/thumbs/$photo' alt='$photo' /> </a> </div>\n";
-					else{	
-						echo "<div class='thumb $orientation'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'><img src='".WB_URL."$folder/$photo' alt='$photo' /> </a> </div>\n";				
-						create_thumb($image_url);
+
+					if($crop_images == 'checked'){
+						echo "<div class='thumb_container'>";
+						if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
+							echo "<div class='thumb $orientation'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'> <img src='".WB_URL."$folder/thumbs/$photo' alt='$photo' /> </a> </div>\n";
+						else{	
+							echo "<div class='thumb $orientation'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'><img src='".WB_URL."$folder/$photo' alt='$photo' /> </a> </div>\n";				
+							create_thumb($image_url);
+						}
+					}	
+					else{
+						echo "<div class='thumb_container_nocrop'>";
+						if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
+							echo "<div class='thumb_nocrop'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'> <img src='".WB_URL."$folder/thumbs/$photo' alt='$photo' /> </a> </div>\n";
+						else{	
+							echo "<div class='thumb_nocrop'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'><img src='".WB_URL."$folder/$photo' alt='$photo' /> </a> </div>\n";				
+							create_thumb($image_url);
+						}
 					}
 				
+				if($show_filenames == 'checked'){	
+					echo "<div class='thumb_text_container'>";
+						echo reset(explode('.', $photo));
+					echo "</div>";	
+				}
 					
-				echo "<div class='thumb_text_container'>";
-					echo reset(explode('.', $photo));
-				echo "</div>";	
-
 				echo "</div>";				
 			}
 			

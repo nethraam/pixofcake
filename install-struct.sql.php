@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `{TABLE_PREFIX}mod_pixofcake` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) DEFAULT NULL,
   `url` text,
+  `crop_images` text,
   PRIMARY KEY (`section_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;

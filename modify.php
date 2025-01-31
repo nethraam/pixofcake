@@ -26,6 +26,14 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
     } else {
         $url = '';
     }
+	
+	
+	$query = "SELECT * FROM `".TABLE_PREFIX."mod_pixofcake` WHERE `page_id` = '$page_id'";
+	$get_content = $database->query($query);
+	$content = $get_content->fetchAssoc();
+	$crop_images = ($content['crop_images'] ?? ''); 
+	$show_filenames = ($content['show_filenames'] ?? ''); 
+
 
 ?>
 
@@ -39,8 +47,16 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 	</p>
 	<p>
 	Crop the thumbnail images so they all have the same format of 150px x 150px:<br>
-	<input type="checkbox" id="pixofcake_crop_images" name="scales" checked />
-    <label for="pixofcake_crop_images">crop_image</label>
+	<input type="checkbox" id="crop_images" name="crop_images" value="checked" <?php echo $crop_images ?> />
+    <label for="pixofcake_crop_images">crop thumbnail images</label>
+	</p>
+	<p>
+	Show filenames below the thumbnal images:<br>
+	<input type="checkbox" id="show_filenames" name="show_filenames" value="checked" <?php echo $show_filenames ?> />
+    <label for="pixofcake_crop_images">show filenames</label>
+	</p>
+	<p>
+	Large images will be automatically resized so that the maximum width or length (depending on the orientation of the photo) will be 1500px.
 	</p>
 	<table style="padding-bottom: 10px; width: 100%;">
         <tr>
