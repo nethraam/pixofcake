@@ -1,16 +1,13 @@
 <?php
-/**
- *
- * @category        modules
+/*
+ * @category        photoalbum modules
  * @package         pixofcake
  * @author          Maarten
- * @copyright       2023, Maarten
- * @copyright       2009-2010, Website Baker Org. e.V.
+ * @copyright       2025, Maarten
  * @link            https://websitebaker.org/
  * @license         https://www.gnu.org/licenses/gpl.html
  * @platform        WebsiteBaker 2.13.x
  * @requirements    PHP 8.0.0 and higher
- *
 */
 
 declare(strict_types = 1);
@@ -83,7 +80,7 @@ function find_photos($folder, $show_filenames, $crop_images){
 	$files = scandir(WB_PATH.$folder);
 
 	foreach ($files as $photo){
-		 if (substr($photo, -4)=='.jpg'|| substr($photo, -5)=='.jpeg' || substr($photo, -4)=='.JPG' || substr($photo, -4)=='.png'){
+		 if (substr($photo, -4)=='.jpg'|| substr($photo, -5)=='.jpeg' || substr($photo, -4)=='.JPG' || substr($photo, -5)=='.JPEG'){
 			
 			$image_url = WB_PATH."$folder/$photo";
 			

@@ -28,11 +28,12 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `{TABLE_PREFIX}mod_pixofcake`;
-CREATE TABLE IF NOT EXISTS `{TABLE_PREFIX}mod_pixofcake` (
+CREATE TABLE IF NOT EXISTS `wb_mod_pixofcake` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) DEFAULT NULL,
   `url` text,
-  `crop_images` text,
+  `crop_images` varchar(10) DEFAULT NULL,
+  `show_filenames` varchar(10) DEFAULT '',
   PRIMARY KEY (`section_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 COMMIT;
