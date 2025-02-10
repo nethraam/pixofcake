@@ -1,3 +1,5 @@
+<?php header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found'); echo '404 Not Found'; flush(); exit;?>
+
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
@@ -28,7 +30,7 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `{TABLE_PREFIX}mod_pixofcake`;
-CREATE TABLE IF NOT EXISTS `wb_mod_pixofcake` (
+CREATE TABLE IF NOT EXISTS `{TABLE_PREFIX}mod_pixofcake` (
   `section_id` int(11) NOT NULL AUTO_INCREMENT,
   `page_id` int(11) DEFAULT NULL,
   `url` text,
