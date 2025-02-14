@@ -35,8 +35,8 @@ if (isset($_POST['url'])) {
 //    $content = (\str_replace($notAllowedTags, '', $_POST['content']));
     // $url = $oRequest->getParam('url');
     $url = $_POST['url'];
-	$crop_images = $_POST['crop_images'];
-	$show_filenames = $_POST['show_filenames'];
+	$crop_images = $_POST['crop_images'] ?? '';
+	$show_filenames = $_POST['show_filenames'] ?? '';
     $sqlSet = '`'.TABLE_PREFIX.'mod_pixofcake` SET '
             . '`section_id`='.$section_id.', '
             . '`page_id`='.$page_id.', '

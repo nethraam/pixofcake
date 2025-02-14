@@ -35,7 +35,7 @@ $page_id = $_SESSION['PAGE_ID'];
 $query = "SELECT `url` FROM `".TABLE_PREFIX."mod_pixofcake` WHERE `page_id` = '$page_id'";
 $get_content = $database->query($query);
 $content = $get_content->fetchAssoc();
-$folder = ($content['url'] ?? '');  // \htmlspecialchars
+$folder = "/".($content['url'] ?? '');  // \htmlspecialchars
 
 // Get url
     // $sql = 'SELECT `url` FROM `'.TABLE_PREFIX.'mod_pixofcake` WHERE `section_id`='.(int)$section_id;

@@ -6,9 +6,9 @@ Pixofcake is an imagegallery module for Websitebaker CMS. The goal of the module
 You can create a folder and upload your photo's  with the media administration in the backend of Websitebaker. If you have a lot of photo's you could also use your favorite ftp program.
 
 ## how to use
-When the module is installed and you've created a pixofcake page, the only thing you need to do is specify a folder. When the folder is in the media directory this wil be someting like /media/myfolder. You coud also choose to put the folder whit your photoalbum directly into the wb folder. Then the path to the folder will look like /myfolder.
+When the module is installed and you've created a pixofcake page, the only thing you need to do is choose the subfolder of the media folder you want to use as photoalbum. You could also choose the media folder itself.
 
-All the photo's in the folder whit a height or with that is greater then 1500px will automaticly be resized. this will happen the first time the folder or subfolder is accesed on the frontend.
+All the photo's in the folder with a height or width that is greater then 1500px will automaticly be resized. this will happen the first time the folder or subfolder is accesed on the frontend.
 Thumbnails will also be created at this point.
 
 With the check boxes in the backend you could choose if you want to display the thumbnail cropped to a format of 150px x 150px or not. When the thumbnails are not cropped, they all will have a height of 150px.

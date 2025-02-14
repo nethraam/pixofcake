@@ -15,6 +15,15 @@
 if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found'); echo '404 Not Found'; \flush(); exit;}
 /* -------------------------------------------------------- */
 
+// check if module language file exists for the language set by the user (e.g. DE, EN)
+if(!file_exists(WB_PATH .'/modules/pixofcake/languages/' .LANGUAGE.'.php')) {
+	// no module language file exists for the language set by the user, include default module language file EN.php
+	require_once(WB_PATH .'/modules/pixofcake/languages/EN.php');
+} else {
+	// a module language file exists for the language defined by the user, load it
+		require_once(WB_PATH .'/modules/pixofcake/languages/' .LANGUAGE.'.php');
+}
+
 // Get url
     $sql = 'SELECT `url` FROM `'.TABLE_PREFIX.'mod_pixofcake` WHERE `section_id`='.(int)$section_id;
     if (($url = $database->get_one($sql)) ) {
@@ -39,21 +48,32 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
     <input type="hidden" name="section_id" value="<?php echo $section_id; ?>" />
     <?php echo $admin->getFTAN(); ?>
 	<p>
-	link to the folder where the photo's are located:<br>
-    <input class="w3-border w3-padding w3-padding w3-mobile " type="text" name="url" id="url" value="<?php echo $url; ?>" style="width:60%;" />
+	<?php echo $MOD_PIXOFCAKE['Folder of the image gallery']; ?><br>
+    <!--<input class="w3-border w3-padding w3-padding w3-mobile " type="text" name="url" id="url" value="<?php echo $url; ?>" style="width:60%;" />-->
+		<?php $aMediaFolderList = MediaDirectoryList(WB_PATH.MEDIA_DIRECTORY); ?>
+		<select name="url" style="width: 300px; padding:4px;">
+			<option value="media">media</option>
+			<?php
+			foreach ($aMediaFolderList as $aFolder){
+				echo '<option value="'.$aFolder.'" ';
+				if ($aFolder == $url){echo ' selected = "selected"';}
+				echo ' > '.$aFolder.'</option>';
+			}
+			?>     
+		</select>
 	</p>
 	<p>
-	Crop the thumbnail images so they all have the same format of 150px x 150px:<br>
+	<?php echo $MOD_PIXOFCAKE['Crop thumbnail images']; ?><br>
 	<input type="checkbox" id="crop_images" name="crop_images" value="checked" <?php echo $crop_images ?> />
     <label for="pixofcake_crop_images">crop thumbnail images</label>
 	</p>
 	<p>
-	Show filenames below the thumbnal images:<br>
+	<?php echo $MOD_PIXOFCAKE['Show filenames']; ?> <br>
 	<input type="checkbox" id="show_filenames" name="show_filenames" value="checked" <?php echo $show_filenames ?> />
     <label for="pixofcake_crop_images">show filenames</label>
 	</p>
 	<p>
-	Large images will be automatically resized so that the maximum width or length (depending on the orientation of the photo) will be 1500px.
+	<?php echo $MOD_PIXOFCAKE['Large images will be automatically resized']; ?>
 	</p>
 	<table style="padding-bottom: 10px; width: 100%;">
         <tr>
@@ -69,5 +89,28 @@ if (!\defined('SYSTEM_RUN')) {\header($_SERVER['SERVER_PROTOCOL'].' 404 Not Foun
 </form>
 
 <?php
+function MediaDirectoryList($directory, $show_hidden = false){
+    $aMediaFolderList = [];
+    if (\is_dir($directory))
+    {
+        $dir = array_values(array_diff(\scandir($directory),['.','..'])); //Open directory
+        foreach ($dir as $key => $entry) {
+            if(($entry[0] === '.') && ($show_hidden == false)) { continue; } // Skip hidden files
+            $sItem = str_replace('//', '/',$directory.'/'.$entry.(\is_dir($directory.'/'.$entry) ? '' : ''));
+            if (\is_dir($sItem)) { // Add dir and contents to list
+                // $aMediaFolderList = \array_merge($aMediaFolderList, MediaDirectoryList($sItem));
+                $aMediaFolderList[] = str_replace(WB_PATH."/",'',$sItem);
+            }
+        }
+    }
+    if (\natcasesort($aMediaFolderList)) {
+        // new indexing
+        $aMediaFolderList = \array_merge($aMediaFolderList);
+    }
+    return $aMediaFolderList; // Now return the list
+}
+
+
 // end of file
+?>
 
