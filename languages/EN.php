@@ -23,7 +23,7 @@
 
 $MOD_PIXOFCAKE['Folder of the image gallery:'] = 'Folder of the image gallery:';
 $MOD_PIXOFCAKE['Crop thumbnail images'] ='Crop the thumbnail images so they all have the same format of 150px x 150px:';
-$MOD_PIXOFCAKE['Show filenames']='Show filenames below the thumbnal images:';
+$MOD_PIXOFCAKE['Show filenames']='Show filenames below the thumbnail images:';
 $MOD_PIXOFCAKE['Large images will be automatically resized'] = 'Large images will be automatically resized so that the maximum width or length (depending on the orientation of the photo) will be 1500px.';
 
 
