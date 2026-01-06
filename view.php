@@ -63,7 +63,7 @@ if(array_key_exists(1,$current_url)){
 }
 
 
-echo "<div class='total_container'>";
+echo "<div class='total_container'>\n";
 	if(isset($_GET['subfolder'])){
 		$folder = "$folder/".$_GET['subfolder'];
 				echo "<div class='back_icon'> <a href='$previous_url'> <img src='".WB_URL."/modules/pixofcake/img/back.png' alt='' /> </a> </div>\n";
@@ -104,7 +104,7 @@ function find_photos($folder, $show_filenames, $crop_images){
 				
 
 					if($crop_images == 'checked'){
-						echo "<div class='thumb_container'>";
+						echo "<div class='thumb_container'>\n";
 						if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
 							echo "<div class='thumb $orientation'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'> <img src='".WB_URL."$folder/thumbs/$photo' alt='$photo' /> </a> </div>\n";
 						else{	
@@ -113,7 +113,7 @@ function find_photos($folder, $show_filenames, $crop_images){
 						}
 					}	
 					else{
-						echo "<div class='thumb_container_nocrop'>";
+						echo "<div class='thumb_container_nocrop'>\n";
 						if (file_exists ( WB_PATH."$folder/thumbs/$photo" ))
 							echo "<div class='thumb_nocrop'> <a data-fancybox='gallery'  href='".WB_URL."$folder/$photo'> <img src='".WB_URL."$folder/thumbs/$photo' alt='$photo' /> </a> </div>\n";
 						else{	
@@ -141,6 +141,7 @@ function find_subfolders($folder){
 	
 	foreach ($subfolders as $subfolder) {
 		
+		
 		$subfolder_name = end(explode('/', $subfolder));
 		
 		if($subfolder_name != 'thumbs'){
@@ -153,42 +154,70 @@ function find_subfolders($folder){
 			$secondfile = scandir($subfolder)[3];
 			$thirdfile = scandir($subfolder)[4];
 			
-			if($firstFile != '' && $secondfile != '' && $thirdfile != ''){
+			echo "<div class='folder_container'>\n";
+			
+			// if($firstFile != '' && $secondfile != '' && $thirdfile != ''){
 
-				if (substr($firstFile, -4)=='.jpg'|| substr($firstFile, -5)=='.jpeg' || substr($firstFile, -4)=='.JPG' || substr($firstFile, -4)=='.png'){
-					echo "<div class='folder_container'>";
-					
+				if (file_is_image($firstFile)){					
 					list($width, $height) = getimagesize(str_replace(" ", "%20", WB_URL."$folder/$subfolder_name/$firstFile"));
 						if ($width >= $height)
 							$orientation1 = 'horizontal';
 						else
 							$orientation1 = 'vertical';
-						
+					
+					echo WB_URL."$folder/$subfolder_name/thumbs/$firstFile";					
+					if (file_exists ( "$subfolder_name/thumbs/$firstFile" ))
+						echo "<div class='thumb_folder $orientation'> <a href='$current_url'subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
+					else	
+						echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$firstFile' alt='' /> </a> </div>\n";
+								
+				}
+					
+				if (file_is_image($secondfile)){		
 					list($width, $height) = getimagesize(str_replace(" ", "%20", WB_URL."$folder/$subfolder_name/$secondfile"));
 						if ($width >= $height)
 							$orientation2 = 'horizontal';
 						else
 							$orientation2 = 'vertical';
 						
+						echo WB_URL."$folder/$subfolder_name/thumbs/$secondfile";
+						if (file_exists ( "$subfolder_name/thumbs/$secondfile" ))
+							echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$secondfile' alt='' /> </a> </div>\n";
+						else
+							echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$secondfile' alt='' /> </a> </div>\n";
+								
+				}			
+				
+				if (file_is_image($thirdfile)){			
 					list($width, $height) = getimagesize(str_replace(" ", "%20", WB_URL."$folder/$subfolder_name/$thirdfile"));
 						if ($width >= $height)
 							$orientation3 = 'horizontal';
 						else
 							$orientation3 = 'vertical';
+						
+					echo WB_URL."$folder/$subfolder_name/thumbs/$thirdfile";
+					if (file_exists ( "$subfolder_name/thumbs/$thirdfile" ))
+						echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$thirdfile' alt='' /> </a> </div>\n";
+					else
+						echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$thirdfile' alt='' /> </a> </div>\n";
+								
+				}			
 							
-							if (file_exists ( "$subfolder_name/thumbs/$firstFile" ))
-								echo "<div class='thumb_folder $orientation'> <a href='$current_url'subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
-							else{	
-								echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$firstFile' alt='' /> </a> </div>\n";
-								echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$secondfile' alt='' /> </a> </div>\n";
-								echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$thirdfile' alt='' /> </a> </div>\n";
-								echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_front.png' alt='' /> </a> </div>\n";
-								echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_back.png' alt='' /> </a> </div>\n";
-								echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
-							}
+					echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_front.png' alt='' /> </a> </div>\n";
+					echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_back.png' alt='' /> </a> </div>\n";
+					echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
+							
 					echo "</div>\n";
-				}
-			}	
+				
+				// else{
+					// echo "<div class='folder_container'>";	
+								// echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_front.png' alt='' /> </a> </div>\n";
+								// echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_back.png' alt='' /> </a> </div>\n";
+								// echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
+					// echo "</div>\n";			
+				// }
+			// }
+			
 		}	
 	}
 }
@@ -234,6 +263,19 @@ function scale_image($image, $scale_width_height){
 	
 	$new_name = basename($image); 
 	imagejpeg($im_php, $directory.'/'.$new_name);
+}
+
+function file_is_image($file_to_check){
+	
+	if(is_string($file_to_check)){
+		if(substr($file_to_check, -4)=='.jpg'|| substr($file_to_check, -5)=='.jpeg' || substr($file_to_check, -4)=='.JPG' || substr($file_to_check, -4)=='.JEPG' || substr($file_to_check, -4)=='.png'|| substr($file_to_check, -4)=='.PNG')
+			return true;
+		else
+			return false;
+	}	
+	else{
+		return false;
+	}	
 }
 
 
