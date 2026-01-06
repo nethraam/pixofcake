@@ -12,9 +12,9 @@
 
 // VARIABLES REQUIRED FOR WEBSITE BAKER
 $module_directory = 'pixofcake';
-$module_name = 'pixofcake v0.2.0';
+$module_name = 'pixofcake v0.3.0';
 $module_function = 'page';
-$module_version = '0.2.0';
+$module_version = '0.3.0';
 $module_platform = '2.13.x';
 $module_upgrade = '2.13.0';
 $module_status = 'beta';

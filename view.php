@@ -164,10 +164,9 @@ function find_subfolders($folder){
 							$orientation1 = 'horizontal';
 						else
 							$orientation1 = 'vertical';
-					
-					echo WB_URL."$folder/$subfolder_name/thumbs/$firstFile";					
-					if (file_exists ( "$subfolder_name/thumbs/$firstFile" ))
-						echo "<div class='thumb_folder $orientation'> <a href='$current_url'subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
+						
+					if (file_exists ( "$subfolder/thumbs/$firstFile"))
+						echo "<div class='thumb_folder $orientation'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
 					else	
 						echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$firstFile' alt='' /> </a> </div>\n";
 								
@@ -180,8 +179,7 @@ function find_subfolders($folder){
 						else
 							$orientation2 = 'vertical';
 						
-						echo WB_URL."$folder/$subfolder_name/thumbs/$secondfile";
-						if (file_exists ( "$subfolder_name/thumbs/$secondfile" ))
+						if (file_exists ( "$subfolder/thumbs/$secondfile" ))
 							echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$secondfile' alt='' /> </a> </div>\n";
 						else
 							echo "<div class='thumb_folder thumb_folder2 $orientation2'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$secondfile' alt='' /> </a> </div>\n";
@@ -195,8 +193,7 @@ function find_subfolders($folder){
 						else
 							$orientation3 = 'vertical';
 						
-					echo WB_URL."$folder/$subfolder_name/thumbs/$thirdfile";
-					if (file_exists ( "$subfolder_name/thumbs/$thirdfile" ))
+					if (file_exists ( "$subfolder/thumbs/$thirdfile" ))
 						echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$thirdfile' alt='' /> </a> </div>\n";
 					else
 						echo "<div class='thumb_folder thumb_folder3 $orientation3'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$thirdfile' alt='' /> </a> </div>\n";
@@ -208,15 +205,6 @@ function find_subfolders($folder){
 					echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
 							
 					echo "</div>\n";
-				
-				// else{
-					// echo "<div class='folder_container'>";	
-								// echo "<div class='folder_icon folder_icon_front'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_front.png' alt='' /> </a> </div>\n";
-								// echo "<div class='folder_icon folder_icon_back'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."/modules/pixofcake/img/folder_back.png' alt='' /> </a> </div>\n";
-								// echo "<div class='folder_icon_text'> <a href='$current_url?subfolder=$subfolder_url'>$subfolder_name</a></div>\n";
-					// echo "</div>\n";			
-				// }
-			// }
 			
 		}	
 	}

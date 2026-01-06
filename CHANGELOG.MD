@@ -12,7 +12,12 @@ first release
 ## [0.2.0] - 2025-02-14
 
 ### Added
-- Added language files. 
+- Added language files.
 
 ### Changed
 - Changed the input field for the folder path to a select box.
+
+## [0.3.0] - 2026-01-06
+
+### Changed
+- Changed the way to search for the folders. This enable us to use folders without images and folders with only one or two images.
