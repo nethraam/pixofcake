@@ -166,7 +166,7 @@ function find_subfolders($folder){
 							$orientation1 = 'vertical';
 						
 					if (file_exists ( "$subfolder/thumbs/$firstFile"))
-						echo "<div class='thumb_folder $orientation'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
+						echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/thumbs/$firstFile' alt='' /> </a> </div>\n";
 					else	
 						echo "<div class='thumb_folder $orientation1'> <a href='$current_url?subfolder=$subfolder_url'> <img src='".WB_URL."$folder/$subfolder_name/$firstFile' alt='' /> </a> </div>\n";
 								
